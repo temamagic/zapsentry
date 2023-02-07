@@ -2,6 +2,7 @@ package zapsentry
 
 import (
 	"errors"
+	"fmt"
 	"reflect"
 	"strings"
 	"time"
@@ -101,6 +102,14 @@ func (c *core) Write(ent zapcore.Entry, fs []zapcore.Field) error {
 		event.Tags = make(map[string]string, len(c.cfg.Tags))
 		for k, v := range c.cfg.Tags {
 			event.Tags[k] = v
+		}
+		for k, v := range event.Extra {
+			if k == "userID" {
+				event.User.ID = fmt.Sprintf("%d", v.(int64))
+			}
+			if k == "username" {
+				event.User.Username = fmt.Sprintf("%s", v.(string))
+			}
 		}
 		event.Exception = clone.createExceptions()
 
