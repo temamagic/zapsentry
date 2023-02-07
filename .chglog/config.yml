@@ -2,7 +2,7 @@ style: github
 template: CHANGELOG.tpl.md
 info:
   title: CHANGELOG
-  repository_url: https://gitlab.com/forgebots/team/golang-edu-bot
+  repository_url: https://github.com/temamagic/zapsentry
 options:
   commits:
     # filters:
